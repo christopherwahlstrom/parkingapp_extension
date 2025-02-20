@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../models/models.dart';
+import '../../../shared/lib/src/models/models.dart';
 import '../repositories/parking.dart';
 import '../repositories/vehicle.dart';
 import '../repositories/parkingspace.dart';

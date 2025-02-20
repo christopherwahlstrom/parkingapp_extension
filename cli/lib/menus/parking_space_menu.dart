@@ -1,6 +1,6 @@
 import 'dart:io';
 import '../repositories/parkingspace.dart';
-import '../models/models.dart';
+import '../../../shared/lib/src/models/models.dart';
 
 void handleParkingSpaceMenu(ParkingSpaceRepository parkingSpaceRepository) {
   while (true) {
