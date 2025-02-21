@@ -56,16 +56,30 @@ class Vehicle {
 }
 
 class Parking {
-  Vehicle vehicle;
-  ParkingSpace parkingSpace;
-  DateTime startTime;
-  DateTime endTime;
+  final String id;
+  final Vehicle vehicle;
+  final ParkingSpace parkingSpace;
+  final DateTime startTime;
+  final DateTime endTime;
+
 
   Parking(
-      {required this.vehicle,
+      {
+      required this.id,
+      required this.vehicle,
       required this.parkingSpace,
       required this.startTime,
       required this.endTime});
+
+  factory Parking.fromJson(Map<String, dynamic> json) {
+    return Parking(
+      id: json['id'],
+      vehicle: Vehicle.fromJson(json['vehicle']),
+      parkingSpace: ParkingSpace.fromJson(json['parkingSpace']),
+      startTime: DateTime.parse(json['startTime']),
+      endTime: DateTime.parse(json['endTime']),
+    );
+  }
 
   bool isValid() {
     return vehicle.isValid() &&
