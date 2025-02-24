@@ -1,8 +1,8 @@
 import 'dart:io';
 import '../../../shared/lib/src/models/models.dart';
-import '../repositories/parking.dart';
-import '../repositories/vehicle.dart';
-import '../repositories/parkingspace.dart';
+import '../../../shared/lib/repositories/parking.dart';
+import '../../../shared/lib/repositories/vehicle.dart';
+import '../../../shared/lib/repositories/parkingspace.dart';
 
 void handleParkingMenu(
     ParkingRepository parkingRepository,

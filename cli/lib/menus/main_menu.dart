@@ -1,47 +1,38 @@
 import 'dart:io';
-import '../repositories/person.dart';
-import '../repositories/vehicle.dart';
-import '../repositories/parking.dart';
-import '../repositories/parkingspace.dart';
-import 'person_menu.dart';
-import 'vehicle_menu.dart';
-import 'parking_space_menu.dart';
-import 'parking_menu.dart';
+
+import 'package:cli/utils/console.dart';
+import 'package:cli/menus/person_menu.dart';
+import 'package:cli/menus/vehicle_menu.dart';
+import 'package:cli/menus/parking_menu.dart';
+import 'package:cli/menus/parking_space_menu.dart';
 
 class MainMenu {
-  final PersonRepository personRepository = PersonRepository();
-  final VehicleRepository vehicleRepository = VehicleRepository();
-  final ParkingSpaceRepository parkingSpaceRepository = ParkingSpaceRepository();
-  final ParkingRepository parkingRepository = ParkingRepository();
+  static Future prompt() async {
+    Console.clear();
 
-  void start() {
     while (true) {
-      print('1. Hantera Person');
-      print('2. Hantera Fordon');
-      print('3. Hantera Parkingsplats');
-      print('4. Hantera Parkering');
-      print('5. Avsluta');
-      stdout.write('Välj ett alternativ: ');
-      var choice = stdin.readLineSync();
-
-      switch (choice) {
-        case '1':
-          handlePersonMenu(personRepository);
-          break;
-        case '2':
-          handleVehicleMenu(vehicleRepository);
-          break;
-        case '3':
-          handleParkingSpaceMenu(parkingSpaceRepository);
-          break;
-        case '4':
-          handleParkingMenu(parkingRepository, vehicleRepository, parkingSpaceRepository);
-          break;
-        case '5':
-          exit(0);
+      print('Main Menu');
+      print('1. Manage Persons');
+      print('2. Manage Vehicles');
+      print('3. Manage Parkings');
+      print('4. Manage Parking Spaces');
+      print('5. Exit');
+      var input = Console.choice();
+      switch (input) {
+        case 1:
+          await PersonMenu.prompt();
+        case 2:
+          await VehicleMenu.prompt();
+        case 3:
+          await ParkingMenu.prompt();
+        case 4:
+          await ParkingSpaceMenu.prompt();
+        case 5:
+          return;
         default:
-          print('Ogiltigt val, försök igen.');
+          print('Invalid choice');
       }
+      print("\n------------------------------------\n");
     }
   }
 }

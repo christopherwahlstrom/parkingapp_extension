@@ -1,6 +1,6 @@
 import 'dart:io';
 import '../../../shared/lib/src/models/models.dart';
-import '../repositories/vehicle.dart';
+import '../../../shared/lib/repositories/vehicle.dart';
 
 void handleVehicleMenu(VehicleRepository vehicleRepository) {
   while (true) {

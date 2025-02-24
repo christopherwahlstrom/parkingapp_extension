@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../../shared/lib/src/models/models.dart';
-import '../../../shared/lib/src/repositories/repository_interface.dart';
+import '../src/models/models.dart';
+import '../src/repositories/repository_interface.dart';
 
 class PersonRepository implements RepositoryInterface<Person> {
   final String baseURL;

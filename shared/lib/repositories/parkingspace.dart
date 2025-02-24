@@ -1,4 +1,4 @@
-import '../../../shared/lib/src/models/models.dart';
+import '../src/models/models.dart';
 
 class ParkingSpaceRepository {
   final List<ParkingSpace> _parkingSpaces = [];

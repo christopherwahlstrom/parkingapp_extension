@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../repositories/person.dart';
+import '../../../shared/lib/repositories/person.dart';
 
 void handlePersonMenu(PersonRepository personRepository) {
   while (true) {
