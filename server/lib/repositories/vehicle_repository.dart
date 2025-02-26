@@ -1,4 +1,4 @@
-import '../src/models/models.dart';
+import '../../../shared/lib/src/models/models.dart';
 
 class VehicleRepository {
   final List<Vehicle> _vehicles = [];

@@ -1,33 +1,47 @@
 import 'dart:io';
-
+import 'dart:convert';
 import 'package:shelf/shelf.dart';
-import 'package:shelf/shelf_io.dart';
+import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
+import 'package:shared/lib/src/shared.dart';
 
-// Configure routes.
-final _router = Router()
-  ..get('/', _rootHandler)
-  ..get('/echo/<message>', _echoHandler);
+class ServerConfig {
+  ServerConfig._privateConstructor() {
+    initialize();
+  }
 
-Response _rootHandler(Request req) {
-  return Response.ok('Hello, World!\n');
-}
+  static final ServerConfig _instance = ServerConfig._privateConstructor();
+  static ServerConfig get instance => _instance;
 
-Response _echoHandler(Request request) {
-  final message = request.params['message'];
-  return Response.ok('$message\n');
-}
+  late Router router;
 
-void main(List<String> args) async {
-  // Use any available host or container IP (usually `0.0.0.0`).
-  final ip = InternetAddress.anyIPv4;
+  Future initialize() async {
+    router = Router();
 
-  // Configure a pipeline that logs requests.
-  final handler =
-      Pipeline().addMiddleware(logRequests()).addHandler(_router.call);
+    router.post('/persons', postPersonHandler);
+    router.get('/persons', getPersonsHandler);
+    router.get('/persons/<id>', getPersonByIdHandler);
+    router.put('/persons/<id>', updatePersonHandler);
+    router.delete('/persons/<id>', deletePersonHandler);
 
-  // For running in containers, we respect the PORT environment variable.
-  final port = int.parse(Platform.environment['PORT'] ?? '8080');
-  final server = await serve(handler, ip, port);
-  print('Server listening on port ${server.port}');
+    router.post('/vehicles', postVehicleHandler);
+    router.get('/vehicles', getVehiclesHandler);
+    router.get('/vehicles/<id>', getVehicleByIdHandler);
+    router.put('/vehicles/<id>', updateVehicleHandler);
+    router.delete('/vehicles/<id>', deleteVehicleHandler);
+
+    router.post('/parkingspaces', postParkingSpaceHandler);
+    router.get('/parkingspaces', getParkingSpacesHandler);
+    router.get('/parkingspaces/<id>', getParkingSpaceByIdHandler);
+    router.put('/parkingspaces/<id>', updateParkingSpaceHandler);
+    router.delete('/parkingspaces/<id>', deleteParkingSpaceHandler);
+
+    router.post('/parkings', postParkingHandler);
+    router.get('/parkings', getParkingsHandler);
+    router.get('/parkings/<id>', getParkingByIdHandler);
+    router.put('/parkings/<id>', updateParkingHandler);
+    router.delete('/parkings/<id>', deleteParkingHandler);
+
+  }
+
 }

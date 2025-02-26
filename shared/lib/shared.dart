@@ -3,11 +3,10 @@
 /// More dartdocs go here.
 library;
 
-export 'models/models.dart';
+export 'src/models/parking.dart';
+export 'src/models/person.dart';
+export 'src/models/vehicle.dart';
+export 'src/models/parkingspace.dart';
 export 'src/repositories/repositories_interface.dart';
-export 'shared/lib/repositories/person.dart';
-export 'shared/lib/repositories/vehicle.dart';
-export 'shared/lib/repositories/parking.dart';
-export 'shared/lib/repositories/parkingspace.dart';
 
 // TODO: Export any libraries intended for clients of this package.
